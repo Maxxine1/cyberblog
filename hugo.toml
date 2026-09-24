@@ -1,0 +1,77 @@
+baseURL = "https://maxxine1.github.io/cyberblog/"
+languageCode = "en-us"
+title = "Maxxine Security"
+theme = "PaperMod"
+enableRobotsTXT = true
+enableEmoji = true
+
+[pagination]
+  pagerSize = 6
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]   # JSON output powers PaperMod search
+
+[markup.highlight]
+  noClasses = false
+
+[params]
+  env = "production"
+  description = "Maxxine Security: cybersecurity notes on system security, ethical hacking and bug bounty"
+  author = "Maxxine"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  TocOpen = false
+
+  # Profile page on the home screen (uses your GitHub avatar)
+  [params.profileMode]
+    enabled = true
+    title = "Maxxine"
+    subtitle = "Cybersecurity enthusiast interested in system security, ethical hacking and bug bounty. I build with C, C++ and Python, and I'm always learning and exploring vulnerabilities."
+    imageUrl = "https://github.com/Maxxine1.png"
+    imageWidth = 140
+    imageHeight = 140
+    imageTitle = "Maxxine1 on GitHub"
+
+    [[params.profileMode.buttons]]
+      name = "Blog Posts"
+      url = "/posts/"
+    [[params.profileMode.buttons]]
+      name = "GitHub"
+      url = "https://github.com/Maxxine1"
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/Maxxine1"
+  [[params.socialIcons]]
+    name = "rss"
+    url = "index.xml"
+
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 0
+    keys = ["title", "permalink", "summary", "content"]
+
+[[menus.main]]
+  name = "Posts"
+  url = "/posts/"
+  weight = 10
+[[menus.main]]
+  name = "Tags"
+  url = "/tags/"
+  weight = 20
+[[menus.main]]
+  name = "Archive"
+  url = "/archives/"
+  weight = 30
+[[menus.main]]
+  name = "Search"
+  url = "/search/"
+  weight = 40
