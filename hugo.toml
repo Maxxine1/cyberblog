@@ -14,6 +14,9 @@ enableEmoji = true
 [markup.highlight]
   noClasses = false
 
+[markup.goldmark.renderer]
+  unsafe = true
+
 [params]
   env = "production"
   description = "Maxxine Security: cybersecurity notes on system security, ethical hacking and bug bounty"
@@ -64,9 +67,13 @@ enableEmoji = true
   url = "/posts/"
   weight = 10
 [[menus.main]]
+  name = "CTF"
+  url = "/ctf/"
+  weight = 20
+[[menus.main]]
   name = "Tags"
   url = "/tags/"
-  weight = 20
+  weight = 25
 [[menus.main]]
   name = "Archive"
   url = "/archives/"

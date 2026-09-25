@@ -1,0 +1,66 @@
+{{ define "main" }}
+
+<div class="home-profile" style="text-align:center;padding:2rem 0 1rem">
+  {{ with site.Params.profileMode.imageUrl }}
+  <img src="{{ . }}" alt="{{ site.Params.profileMode.imageTitle }}"
+       style="width:{{ site.Params.profileMode.imageWidth | default 140 }}px;height:{{ site.Params.profileMode.imageHeight | default 140 }}px;border-radius:50%;object-fit:cover">
+  {{ end }}
+  <h1 style="margin:1rem 0 .3rem">{{ site.Params.profileMode.title }}</h1>
+  <p style="max-width:600px;margin:0 auto;color:var(--secondary)">{{ site.Params.profileMode.subtitle | markdownify }}</p>
+
+  <div style="display:flex;justify-content:center;gap:.7rem;margin-top:1.2rem;flex-wrap:wrap">
+    {{ range site.Params.profileMode.buttons }}
+    <a href="{{ .url | absLangURL }}" class="button"
+       style="border:1px solid var(--border);border-radius:8px;padding:.5rem 1.1rem;text-decoration:none;color:inherit">
+       {{ .name }}
+    </a>
+    {{ end }}
+  </div>
+</div>
+
+<style>
+.id-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin:1.5rem 0 2.5rem}
+.id-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;padding:1.3rem 1rem;border:1px solid var(--border);border-radius:10px}
+.id-card img{height:38px;width:38px;object-fit:contain}
+.id-card .fallback{height:38px;width:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.95rem;color:#fff;background:#555}
+.id-card span{font-weight:600}
+.id-card code{font-size:.85rem;color:var(--secondary)}
+</style>
+
+<div class="id-grid">
+
+  <a class="id-card" href="https://app.hackthebox.com/profile/YOUR-ID" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+    <img src="https://cdn.simpleicons.org/hackthebox/9FEF00" alt="Hack The Box logo"
+         onerror="this.outerHTML='<div class=&quot;fallback&quot; style=&quot;background:#9FEF00;color:#111&quot;>HTB</div>'">
+    <span>Hack The Box</span>
+  </a>
+
+  <a class="id-card" href="https://tryhackme.com/p/YOUR-USERNAME" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+    <img src="https://cdn.simpleicons.org/tryhackme/FF2C41" alt="TryHackMe logo"
+         onerror="this.outerHTML='<div class=&quot;fallback&quot; style=&quot;background:#FF2C41&quot;>THM</div>'">
+    <span>TryHackMe</span>
+  </a>
+
+  <a class="id-card" href="https://github.com/Maxxine1" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+    <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub logo"
+         onerror="this.outerHTML='<div class=&quot;fallback&quot; style=&quot;background:#181717&quot;>GH</div>'">
+    <span>GitHub</span>
+  </a>
+
+</div>
+
+{{ $pages := where site.RegularPages "Type" "posts" }}
+{{ with $pages }}
+<h2 style="margin-bottom:.8rem">Recent posts</h2>
+<ul style="list-style:none;padding:0">
+  {{ range first 5 . }}
+  <li style="padding:.6rem 0;border-bottom:1px solid var(--border)">
+    <a href="{{ .Permalink }}" style="font-weight:600;text-decoration:none;color:inherit">{{ .Title }}</a>
+    <div style="font-size:.8rem;color:var(--secondary)">{{ .Date.Format "Jan 2, 2006" }}</div>
+  </li>
+  {{ end }}
+</ul>
+<p style="margin-top:1rem"><a href="{{ "/posts/" | absLangURL }}">View all posts →</a></p>
+{{ end }}
+
+{{ end }}
